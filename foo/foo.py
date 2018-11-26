@@ -9,3 +9,5 @@ b = 12
 print(a)
 print(b)
 
+f = 12
+print(f)
