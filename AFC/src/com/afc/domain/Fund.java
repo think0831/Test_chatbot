@@ -21,6 +21,13 @@ public class Fund implements Serializable {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Fund [fundNumber=" + fundNumber + ", fundName=" + fundName + ", basePrice=" + basePrice + ", fundType="
+				+ fundType + ", nav=" + nav + ", tam=" + tam + ", firstFee=" + firstFee + ", resaleFee=" + resaleFee
+				+ ", repurchase=" + repurchase + ", profit=" + profit + ", totalPay=" + totalPay + "]";
+	}
+
 	public int getFundNumber() {
 		return fundNumber;
 	}
@@ -53,12 +60,12 @@ public class Fund implements Serializable {
 		this.fundType = fundType;
 	}
 
-	public BigDecimal getNav() {
-		return nav;
+	public String getNav() {
+		return nav.toString();
 	}
 
-	public void setNav(BigDecimal nav) {
-		this.nav = nav;
+	public void setNav(String nav) {
+		this.nav = new BigDecimal(nav);
 	}
 
 	public String getTam() {
@@ -107,6 +114,7 @@ public class Fund implements Serializable {
 
 	public void setTotalPay(double totalPay) {
 		this.totalPay = totalPay;
+		Object obj;
 	}
 
 }

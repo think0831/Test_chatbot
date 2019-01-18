@@ -8,6 +8,8 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import com.afc.domain.Fund;
+import com.afc.persistence.FundDao;
 import com.afc.util.MessageBuffer;
 import com.google.gson.internal.LinkedTreeMap;
 
@@ -34,38 +36,44 @@ public class Chat {
 		
 		if(((String)map.get("ref_intent_id")).contains("펀드가입상담")) {
 			client.getBasicRemote().sendText(danbee.result(response) + ";" + map.get("node_id"));
-		} else if(((String)map.get("ref_intent_id")).contains("펀드해지상담")) {
+		} 
+		else if(((String)map.get("ref_intent_id")).contains("펀드해지상담")) {
 			client.getBasicRemote().sendText(danbee.result(response) + ";" + map.get("node_id"));
-		} else if(((String)map.get("ref_intent_id")).contains("펀드 가입")) {
+		} 
+		else if(((String)map.get("ref_intent_id")).contains("펀드 가입")) {
 			client.getBasicRemote().sendText(danbee.result(response) + ";join");
-		} else if(((String)map.get("ref_intent_id")).contains("펀드 해지")) {
+		} 
+		else if(((String)map.get("ref_intent_id")).contains("펀드 해지")) {
 			client.getBasicRemote().sendText(danbee.result(response) + ";" + map.get("node_id"));
-		} else if(((String)map.get("ref_intent_id")).contains("과일")) {
+		} 
+		else if(((String)map.get("ref_intent_id")).contains("펀드상품정보조회")) {
+			Fund fund = fundInfo(map);
+			
+			client.getBasicRemote().sendText(fund.toString());
+		} 
+		else if(((String)map.get("ref_intent_id")).contains("question")) {
 			client.getBasicRemote().sendText(danbee.result(response) + ";" + map.get("node_id"));
-		} else if(((String)map.get("ref_intent_id")).contains("question")) {
-			client.getBasicRemote().sendText(danbee.result(response) + ";" + map.get("node_id"));
-		} else {
-			//client.getBasicRemote().sendText("+++++"+message);
-			client.getBasicRemote().sendText(danbee.result(response) + ";" + map.get("node_id"));
+		}
+		else {
+			client.getBasicRemote().sendText(message);
+			//client.getBasicRemote().sendText(danbee.result(response) + ";" + map.get("node_id"));
 		}
 		
 	}
 
 	@OnOpen
 	public void onOpen(Session session) {
-		// Add session to the connected sessions set
 		System.out.println(session);
 		client = session;
 		messageBuffer = new MessageBuffer();
 		
 		danbee = new Danbee();
 		map = new LinkedTreeMap<String, Object>();
-		map.put("chatbot_id", jChatBot);
+		map.put("chatbot_id", yChatBot);
 	}
 
 	@OnClose
 	public void onClose(Session session) {
-		// Remove session from the connected sessions set
 		try {
 			client.close();
 		} catch (IOException e) {
@@ -78,8 +86,14 @@ public class Chat {
 		return null;
 	}
 	
-	public String fundInfo() {
+	public Fund fundInfo(LinkedTreeMap<String, Object> map) {
+		LinkedTreeMap<String, String> parameters = (LinkedTreeMap<String, String>) map.get("parameters");
 		
-		return null;
+		FundDao fundDao = new FundDao();
+		
+		//신영마라톤증권자F1[주식]A형
+		Fund fund = fundDao.viewFromName(parameters.get("펀드상품명칭"));
+		
+		return fund;
 	}
 }

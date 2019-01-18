@@ -126,11 +126,9 @@ public class Danbee {
 			
 			for(Object key : parametersJson.keySet()) {
 				String sKey = (String)key;
-				System.out.println(sKey);
 				parameters.put(sKey, (String)parametersJson.get(sKey));
 			}
 			
-			System.out.println(parameters.toString());
 			map.put("parameters", parameters);
 			
 			//결과�?  { } ?�� 경우

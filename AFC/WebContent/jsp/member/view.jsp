@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%--  <c:if test="${ fund !eq null }"> --%>
+		<span>${ member.memberNumber }</span><br>
+		<span>${ member.id }</span><br>
+		<span>${ member.name }</span><br>
+		<span>${ member.phone }</span><br>
+<%--  </c:if>  --%>
 </body>
 </html>

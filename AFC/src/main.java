@@ -15,7 +15,7 @@ public class main {
 		vo1.setFundName("신영퇴직연금채권증권자(채권)");
 		vo1.setFundType("2");
 		vo1.setBasePrice(1039.09);
-		vo1.setNav(ee);		
+		//vo1.setNav(ee);		
 		vo1.setTam("수익증권최저비율 90%, 수익증권최고비율 100% - 신영퇴직연금채권증권모(채권)");
 		vo1.setFirstFee(0);
 		vo1.setResaleFee(0);

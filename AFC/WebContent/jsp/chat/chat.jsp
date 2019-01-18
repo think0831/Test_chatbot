@@ -37,7 +37,7 @@
     function onMessage(event) {
 		var message = String(event.data).split(';')
     	
-		if (message[1] == "join") {
+		if (message[0] == "join") {
 			window.open('http://localhost/jsp/fund/survey.jsp','성향분석','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');
 		}
     	textarea.value += "상대 : " + message[0] + "\n";
