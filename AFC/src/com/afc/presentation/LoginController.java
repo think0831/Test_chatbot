@@ -27,7 +27,7 @@ public class LoginController {
 				: false;
 
 		if (isLogin) {
-			return new ModelAndView(new RedirectView("/chat/chat"));
+			return new ModelAndView(new RedirectView("/chat"));
 		}
 		
 		return new ModelAndView("/login/login");
@@ -48,6 +48,7 @@ public class LoginController {
 			if(memberInDB != null && memberInDB.getPassword().equals(member.getPassword())) {
 				session.setAttribute("isLogin", true);
 				session.setAttribute("id", memberInDB.getId());
+				session.setAttribute("number", memberInDB.getMemberNumber());
 				
 				modelAndView = new ModelAndView("/chat/chat");
 				
@@ -71,5 +72,11 @@ public class LoginController {
 		}
 
 		return new ModelAndView(new RedirectView("/login"));
+	}
+	
+	@RequestMapping(value = "/chat", method = RequestMethod.GET)
+	public ModelAndView chatGet(HttpServletRequest request) {
+
+		return new ModelAndView("/chat/chat");
 	}
 }

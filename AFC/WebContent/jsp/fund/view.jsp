@@ -23,7 +23,7 @@
 		<span>${ fund.totalPay }</span><br>
 	<%--  </c:if>  --%>
 	
-	<form action="/fund/add" method="post">
+	<form action="/fundJoin/add" method="post">
 		<input type="hidden" name='fundNumber' value='${ fund.fundNumber }'>
 		<input type="submit" id="add" value="가입" />
 	</form>

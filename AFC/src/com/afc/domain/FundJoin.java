@@ -6,8 +6,6 @@ public class FundJoin implements Serializable{
 	private int joinNumber;
 	private int fundNumber;
     private int memberNumber;
-	private int accountNumber;
-	private int joinMount;
 	private String joinDate;
 	
 	public FundJoin() {
@@ -38,22 +36,6 @@ public class FundJoin implements Serializable{
 		this.memberNumber = memberNumber;
 	}
 
-	public int getAccountNumber() {
-		return accountNumber;
-	}
-
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
-	public int getJoinMount() {
-		return joinMount;
-	}
-
-	public void setJoinMount(int joinMount) {
-		this.joinMount = joinMount;
-	}
-
 	public String getJoinDate() {
 		return joinDate;
 	}
@@ -61,4 +43,5 @@ public class FundJoin implements Serializable{
 	public void setJoinDate(String joinDate) {
 		this.joinDate = joinDate;
 	}
+
 }

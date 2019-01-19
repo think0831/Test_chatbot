@@ -90,9 +90,20 @@ public class FundDao {
 
 	}
 
-	public List<Fund> list(String fundType) {
+	public List<Fund> listAsType(String fundType) {
 		String query = "SELECT FUND_NUMBER, FUND_NAME, FUND_TYPE, BASE_PRICE, NAV, TAM, FIRST_FEE, RESALE_FEE, REPURCHASE, PROFIT, TOTAL_PAY "
 				+ "FROM FUND " + "WHERE FUND_TYPE <= '" + fundType + "'";
+
+		System.out.println(query);
+
+		List<Fund> list = select(query);
+		
+		return list;
+	}
+	
+	public List<Fund> listAsMemberNumber(int memberNumber) {
+		String query = "SELECT FUND_NUMBER, FUND_NAME, FUND_TYPE, BASE_PRICE, NAV, TAM, FIRST_FEE, RESALE_FEE, REPURCHASE, PROFIT, TOTAL_PAY "
+				+ "FROM FUND WHERE FUND_NUMBER = " + memberNumber;
 
 		System.out.println(query);
 

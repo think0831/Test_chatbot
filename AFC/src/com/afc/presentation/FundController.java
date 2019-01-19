@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,18 @@ public class FundController {
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public ModelAndView listPost(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("/fund/list");
-		List<Fund> list = fundService.list(request.getParameter("type"));
+		List<Fund> list = fundService.listAsType(request.getParameter("type"));
+		modelAndView.addObject("fundList", list);
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/myList", method = RequestMethod.GET)
+	public ModelAndView MyListPost(HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		
+		ModelAndView modelAndView = new ModelAndView("/fund/list");
+		List<Fund> list = fundService.listAsMemberNumber((int)session.getAttribute("number"));
 		modelAndView.addObject("fundList", list);
 		
 		return modelAndView;

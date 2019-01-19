@@ -9,7 +9,7 @@
 </head>
 <body>
 	<c:forEach items="${ fundList }" var="fund" varStatus="status">
-		<a href="view?number=${ fund.fundNumber }">localhost/fund/view?number=${ fund.fundNumber }</a><br>
+		<a href="view?number=${ fund.fundNumber }">${ fund.fundName }</a><br>
 	</c:forEach>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.afc.webSocket;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -9,11 +10,11 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import com.afc.domain.Fund;
-import com.afc.persistence.FundDao;
+import com.afc.service.FundService;
 import com.afc.util.MessageBuffer;
 import com.google.gson.internal.LinkedTreeMap;
 
-@ServerEndpoint("/chat")
+@ServerEndpoint("/chatBoard")
 public class Chat {
 	
 	private final static String yChatBot = "fefd2465-02bb-48fc-9bff-0592b6c7029d";
@@ -35,6 +36,7 @@ public class Chat {
 		System.out.println(map.get("ref_intent_id"));
 		
 		if(((String)map.get("ref_intent_id")).contains("펀드가입상담")) {
+			System.out.println("------");
 			client.getBasicRemote().sendText(danbee.result(response) + ";" + map.get("node_id"));
 		} 
 		else if(((String)map.get("ref_intent_id")).contains("펀드해지상담")) {
@@ -89,11 +91,22 @@ public class Chat {
 	public Fund fundInfo(LinkedTreeMap<String, Object> map) {
 		LinkedTreeMap<String, String> parameters = (LinkedTreeMap<String, String>) map.get("parameters");
 		
-		FundDao fundDao = new FundDao();
+		FundService fundService = new FundService();
 		
 		//신영마라톤증권자F1[주식]A형
-		Fund fund = fundDao.viewFromName(parameters.get("펀드상품명칭"));
+		Fund fund = fundService.view(1);
 		
 		return fund;
+	}
+	
+	public List<Fund> myFundInfo(LinkedTreeMap<String, Object> map) {
+		LinkedTreeMap<String, String> parameters = (LinkedTreeMap<String, String>) map.get("parameters");
+		
+		FundService fundService = new FundService();
+		
+		//신영마라톤증권자F1[주식]A형
+		List<Fund> fundList = fundService.listAsMemberNumber(2);
+		
+		return fundList;
 	}
 }

@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.afc.domain.Fund;
+import com.afc.domain.FundJoin;
 import com.afc.persistence.FundDao;
 import com.afc.persistence.FundJoinDao;
 
@@ -19,7 +19,7 @@ public class FundJoinService {
 	private FundJoinDao fundJoinDao;
 	
 	@Transactional
-	public void add(Fund fund) {
-		
+	public void add(FundJoin fundJoin) {
+		fundJoinDao.add(fundJoin);
 	}
 }

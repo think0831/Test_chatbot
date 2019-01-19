@@ -20,8 +20,11 @@ public class FundService {
 		return this.fundDao.viewFromNumber(fundNumber);
 	}
 	
-	@Transactional
-	public List<Fund> list(String fundType) {
-		return this.fundDao.list(fundType);
+	public List<Fund> listAsType(String fundType) {
+		return this.fundDao.listAsType(fundType);
+	}
+	
+	public List<Fund> listAsMemberNumber(int memberNumber) {
+		return this.fundDao.listAsMemberNumber(memberNumber);
 	}
 }
