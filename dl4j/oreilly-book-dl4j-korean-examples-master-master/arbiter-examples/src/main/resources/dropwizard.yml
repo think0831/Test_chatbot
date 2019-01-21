@@ -1,0 +1,31 @@
+server:
+#  최대 소켓 권고(soft limit): 1000
+#  최대 소켓 제한(hard limit): 1000
+  applicationConnectors:
+    - type: http
+      port: 8080
+      acceptorThreads: 5
+      selectorThreads: 3
+  adminMinThreads: 3
+  adminMaxThreads: 10
+  adminConnectors:
+    - type: http
+      port: 8081
+  requestLog:
+    appenders: []
+
+# 로깅 설정
+logging:
+
+  # 루트 로거 기본 레벨 설정. OFF, ERROR, WARN, INFO, DEBUG, TRACE, ALL 설정 가능.
+  level: INFO
+
+  # 하위 로거별 레베 설정
+  loggers:
+
+    # 'com.example.app' 레벨 DEBUG로 설정.
+    org.deeplearning4j: INFO
+    org.eclipse.jetty: INFO
+
+  appenders:
+    - type: console

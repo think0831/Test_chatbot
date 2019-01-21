@@ -1,0 +1,31 @@
+server:
+#  softNofileLimit: 1000
+#  hardNofileLimit: 1000
+  applicationConnectors:
+    - type: http
+      port: 8080
+      acceptorThreads: 5
+      selectorThreads: 3
+  adminMinThreads: 3
+  adminMaxThreads: 10
+  adminConnectors:
+    - type: http
+      port: 8081
+  requestLog:
+    appenders: []
+
+# 로깅 셋팅.
+logging:
+
+  # logger 기본 레벨 : OFF, ERROR, WARN, INFO, DEBUG, TRACE, ALL.
+  level: INFO
+
+  # logger의 특화 레벨.
+  loggers:
+
+    # 'com.example.app'를 DEBUG하기 위한 레벨 설정.
+    org.deeplearning4j: INFO
+    org.eclipse.jetty: INFO
+
+  appenders:
+    - type: console
